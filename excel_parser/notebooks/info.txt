@@ -1,0 +1,4 @@
+The notebooks(extension .ipynb) are jupyter notebooks or ipython notebooks.
+Requirements:
+Anaconda for python 3x
+( anaconda.com/distribution )
