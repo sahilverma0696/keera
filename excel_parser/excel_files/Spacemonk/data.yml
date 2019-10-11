@@ -1,0 +1,12 @@
+data_directory:
+        D:\personal\spacemonk\excel_parser\excel_files\Spacemonk\input
+workorder_directory:
+        D:\personal\spacemonk\excel_parser\excel_files\Spacemonk\output
+
+upper matrix header:
+        activity description
+coordinate term:
+        frequency
+#To-Do
+# \\ is  a problem, change it 
+#
