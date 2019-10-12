@@ -1,15 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# To-Do:
-#     1. Make the flow proper of functions
-#     2. Give completion status of function and complete script
-#     3. Make the sheets saved in one file only,(optional, only useful in excel sample export)
-# 4. Question: By the time of export, make api calls and excel output or just json.
-#     5. Make the file accroding to yaml
-# 6. Make proper function, reduce only to logical level.
-# 7. Add Pipeline
-# ** Handle the exceptions and crashes **
 
 # Flow of functions:
 #     1. Drop the nan values, how = all,                        df_dropna(df)
@@ -188,6 +179,7 @@ def execute(i):
     ##### EXPORTING DATA
 
     df_act.to_excel(yml_data["workorder_directory"]+"\\"+file.sheet_names[i]+".xlsx")
+    df_act.to_json(path_or_buf =yml_data["workorder_directory"]+"\\"+file.sheet_names[i]+".json" ,orient = 'records')
     print(file.sheet_names[i], " succesfull")
 
 

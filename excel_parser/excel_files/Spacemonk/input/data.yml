@@ -1,12 +1,12 @@
+# Please enter the path of input excel file
 data_directory:
-        D:\personal\spacemonk\excel_parser\excel_files\Spacemonk\input
+        C:\Users\Sahil\Documents\spacemonk\excel_parser\excel_files\Spacemonk\input
+# Enter the path of the folder you need the workorders
 workorder_directory:
-        D:\personal\spacemonk\excel_parser\excel_files\Spacemonk\output
-
+        C:\Users\Sahil\Documents\spacemonk\excel_parser\excel_files\Spacemonk\output
+# Enter the cell name, where the sheet cropping stats
 origin:
         activity description
+# Enter the cell name after which the attendance ticks are present
 coordinate term:
         frequency
-#To-Do
-# \\ is  a problem, change it 
-#
