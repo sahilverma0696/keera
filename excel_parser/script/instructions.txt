@@ -1,0 +1,9 @@
+The script generates the workorders and json data for the user.
+
+1. run base_dir.py, to set the base directory on Desktop.
+	Enter the YAML and Excel data in the generated input folder
+	~/Desktop/Spacemonk/input -> data.yml, excel file
+
+2. Run main.py to genrate the workorders in Output folder.
+
+	~/Desktop/Spacemonk/output -> workorders
