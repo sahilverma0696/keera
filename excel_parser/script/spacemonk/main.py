@@ -18,26 +18,38 @@ def execute(i):
     
 
     ## TODO: seprate the normal df construct vs period data construct 
+    if(yml_data['periodicity']):
+        try:
+            freq_c =coordinates(df,yml_data['coordinate term'])
+        except:
+            print("Frequency not Found ")
+            exit(0)
+        
+        df_freq = df.iloc[freq_c[0]:,freq_c[1]+1:]
+        set_column(df_freq)
 
-    #Creating df of frequency
+        df_act = df.iloc[0:,0:freq_c[1]+1]
+        set_column(df_act)
+        df_act["week number"] = week_list(df_freq)
 
-    freq_c =coordinates(df,yml_data['coordinate term'])
-    assert freq_c,"Frequency not Found "
+        df_act.loc[df_act.frequency!=df_act.frequency ,'week number'] = "---"
+        df_act.loc[df_act.frequency=='daily' ,'week number'] = "d"
+        df_act.loc[df_act.frequency=='weekly' ,'week number'] = "w"
 
-    df_freq = df.iloc[freq_c[0]:,freq_c[1]+1:]
-    set_column(df_freq)
+    else:
+        df_act = single(df)
+        
+        
 
-    df_act = df.iloc[0:,0:freq_c[1]+1]
-    set_column(df_act)
-    df_act["week number"] = week_list(df_freq)
-
-    df_act.loc[df_act.frequency!=df_act.frequency ,'week number'] = "---"
-    df_act.loc[df_act.frequency=='daily' ,'week number'] = "d"
-    df_act.loc[df_act.frequency=='weekly' ,'week number'] = "w"
 
     ##### EXPORTING DATA
 
-    df_act.to_excel(path.expanduser("~/Desktop/Spacemonk/output/")+file.sheet_names[i]+".xlsx")
+    if not path.exists(path.expanduser("~/Desktop/Spacemonk/output")):
+        makedirs(path.expanduser("~/Desktop")+"/Spacemonk/output")
+    if(yml_data['excel_copy']):
+        df_act.to_excel(path.expanduser("~/Desktop/Spacemonk/output/")+file.sheet_names[i]+".xlsx")
+    else:
+        pass
     df_act.to_json(path.expanduser("~/Desktop/Spacemonk/output/")+file.sheet_names[i]+".json" ,orient = 'records')
     print(file.sheet_names[i], " succesfull")
 
