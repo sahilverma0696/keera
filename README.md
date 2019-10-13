@@ -11,7 +11,7 @@ summit.py
 
 ### Script
 excel_parser -> scripts
-1. base_dir.py
-2.main.py
 
+First execute base_dir.py to setup the path on user Desktop.
+Second execute main.py after putting the necessary data in input file created.
 
