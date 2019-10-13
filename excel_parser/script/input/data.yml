@@ -8,3 +8,6 @@ periodicity:
 # Enter the cell name after which the periodicity ticks are present
 coordinate term:
         frequency
+# Do you want an excel copy ?
+excel_copy:
+        no

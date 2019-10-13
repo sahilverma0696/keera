@@ -3,7 +3,7 @@
 import pandas as pd
 from numpy import array
 from io_handles import yml_data
-
+from sys import exit
 
 
 
@@ -69,13 +69,19 @@ def base_df(file,i):
     df =df_clean(df)
 
     #Creating the dataframe from origin
-
-    origin = coordinates(df,yml_data['origin'])
-    assert origin,"Origin not Found"
+    try:
+        origin = coordinates(df,yml_data['origin'])
+    except:
+        print("Origin not found")
+        exit(0)
 
     df= df.iloc[origin[0]:,origin[1]:]
     reset_index(df)
 
     return df
 
+def single(df):
+    df_act = df.iloc[0:,0:]
+    set_column(df_act)
+    return df_act
 
