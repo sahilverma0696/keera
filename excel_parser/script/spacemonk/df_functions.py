@@ -13,7 +13,7 @@ def df_clean(df):
     df.dropna(axis=0,how="all",inplace=True)
     df.dropna(axis=1,how="all",inplace=True)
     # Mapfunction to convert all the string in df to lowercase and keeping the other types same
-    return df.applymap(lambda s:s.lower() if type(s) == str else s)
+    return df
 
 
 
@@ -67,6 +67,7 @@ def base_df(file,i):
     #Producing clean dataframe in lowercase.
 
     df =df_clean(df)
+    df =df.applymap(lambda s:s.lower() if type(s) == str else s)
 
     #Creating the dataframe from origin
     try:

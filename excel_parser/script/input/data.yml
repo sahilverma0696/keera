@@ -10,4 +10,4 @@ coordinate term:
         frequency
 # Do you want an excel copy ?
 excel_copy:
-        no
+        yes
