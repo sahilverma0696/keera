@@ -53,10 +53,16 @@ def set_column(df):
 
 def week_list(df):
   # finds the count of non nan, in given df, across the rows
-  for i in range(1,df.shape[1]+1):
-        df.loc[df[i]==df[i],i]=i
-  week_num = [[ j for j in i if j ==j] for i in array(df) ]
-  return week_num
+    try:
+        for i in range(1,df.shape[1]+1):
+            df.loc[df[i]==df[i],i]=i
+        week_num = [[ j for j in i if j ==j] for i in array(df) ]
+        return week_num
+    except:
+        print("Excel Data is incorrect.")
+        exit(0)
+        
+
 
 
 
