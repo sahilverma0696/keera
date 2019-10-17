@@ -1,0 +1,11 @@
+# Enter the cell name, where the sheet cropping stats
+origin:
+        activity description
+
+# Does the sheet contains spiltting of frequency or periodicity
+periodicity:
+        yes
+# Enter the cell name after which the periodicity ticks are present
+coordinate term:
+        frequency
+
