@@ -70,7 +70,7 @@ def execute(i):
 
     ##### EXPORTING DATA
     df_act.to_excel(excel_file.sheet_names[i]+".xlsx")
-    export_json(df_act,excel_file.sheet_names[i])
+    #export_json(df_act,excel_file.sheet_names[i])
     print(excel_file.sheet_names[i], " succesfull")
 
 
