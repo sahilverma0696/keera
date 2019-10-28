@@ -1,6 +1,6 @@
 from io_handles import *
 from df_functions import *
-
+from export import export_json
 
 if(check_arguments()==False):
     sys.exit(0)
@@ -70,6 +70,7 @@ def execute(i):
 
     ##### EXPORTING DATA
     df_act.to_excel(excel_file.sheet_names[i]+".xlsx")
+    export_json(df_act,excel_file.sheet_names[i])
     print(excel_file.sheet_names[i], " succesfull")
 
 
