@@ -15,21 +15,23 @@ def text_handler(bot,msg,chat_id):
     else:
         bot.sendMessage(chat_id,"Sorry I don't understand that.")
     
-def file_handle(bot,msg):
+def file_download(bot,msg):
     file_id = msg['document']['file_id']
-    file_id = bot.getFile(file_id)
     print(file_id)
-    newfile = bot.getFile(file_id['file_id'])
+    newfile = bot.getFile(file_id)
     print(newfile)
+
+    # try 1
     #file_path =file_id['file_path']
     #download_file = bot.download_file(file_id['file_id'],dest = "./")
     
-    #download = telegram.File(file_id=file_id['file_id'],bot=bot,file_size =file_id['file_size'],file_path=file_id['file_path'])
+    # try 2
+    #download = telegram.File(file_id=newfile['file_id'],bot=bot,file_size =newfile['file_size'],file_path=newfile['file_path'])
     #download.download()
 
 def menu(bot,msg,content_type,chat_id):
     if(content_type=='text'):
         text_handler(bot,msg,chat_id)
     elif(content_type== 'document'):
-        file_handle(bot,msg)
+        file_download(bot,msg)
 
