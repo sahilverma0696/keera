@@ -10,7 +10,7 @@ run(excel_file.xlsx,yml_data.yml)
 import file_handles
 from df_functions import *
 #from export import export_json
-#from sys import argv
+from sys import argv
 
 
 
@@ -66,7 +66,7 @@ def execute(i,excel_filez,yml_data):
 
 
     ##### EXPORTING DATA
-    df_act.to_excel(excel_filez.sheet_names[i]+".xlsx")
+    df_act.to_excel(excel_filez.sheet_names[i]+"_spstd.xlsx")
     #export_json(df_act,excel_filez.sheet_names[i])
     print(excel_filez.sheet_names[i], " succesfull")
 
@@ -80,4 +80,4 @@ def run(excel,yml):
 
 
 
-#run(argv[1],argv[2])
+run(argv[1],argv[2])
