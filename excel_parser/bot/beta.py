@@ -13,7 +13,7 @@ bot = telepot.Bot(TOKEN)
 def handle(msg):
     #pprint(msg)
     content_type, chat_type, chat_id = telepot.glance(msg)
-    bot_fun.menu(bot,msg,content_type,chat_id)
+    bot_fun.menu(bot,msg,content_type,chat_id,TOKEN)
 
     
 
