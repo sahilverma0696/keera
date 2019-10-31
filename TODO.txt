@@ -1,9 +1,0 @@
-1. Make the bot
-	User initiate, the call for workorder
-	Ask for the yml questions 
-2. Make the ymL file
-3. DF pipe 
-4. Return the new excel to the user
-5. returns the excel file 
-6. Make workorder
-
