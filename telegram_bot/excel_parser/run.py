@@ -5,7 +5,7 @@ import run() to execute.
 run(excel_file.xlsx,yml_data.yml)
 
 '''
-
+#TODO: Handle the returns, all of them
 #local imports
 import excel_parser.file_handles
 from excel_parser.df_functions import *
@@ -27,12 +27,13 @@ def base_df(excel_filez,i,yml_data):
     df =df_clean(df)
     df =df.applymap(lambda s:s.lower() if type(s) == str else s)
     #Creating the dataframe from origin
-    try:
-        origin = coordinates(df,yml_data['origin'])
-        df= df.iloc[origin[0]:,origin[1]:]
-    except:
+    
+    origin = coordinates(df,yml_data['origin'])
+    if(origin==False):
         print("Origin not found")
         exit(0)
+    df= df.iloc[origin[0]:,origin[1]:]
+        
 
     
     reset_index(df)

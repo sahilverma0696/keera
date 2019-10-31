@@ -33,7 +33,12 @@ def gen_std(bot,msg,chat_id,file_name):
     run.run(file_name,"dd.yml")
     print("ExcelStd generate")
     bot.sendMessage(chat_id,"Standard Excel Generated")
-    #bot.sendDocument(chat_id,)
+    all_files = os.listdir()
+    for each_file in all_files:
+        if(each_file[-11:]=="_spstd.xlsx"):
+            f =open(each_file,"rb")
+            #file_doc = f.read()
+            bot.sendDocument(chat_id,f)
 
 
 
@@ -58,15 +63,15 @@ def file_download(bot,msg,chat_id,TOKEN):
         if( file_name_first[-6:] == "_spstd"):
             open("./gen_json/"+  file_name,'wb').write(r.content)
             gen_json(bot,msg,chat_id,file_name)
-            print("Json generated")
+            print("Json file generated")
         else:
             open("./gen_std/"+file_name,'wb').write(r.content)
             gen_std(bot,msg,chat_id,file_name)
-            print("Std excel generated")
+            print("Standard Excel generated")
     elif(file_name_ext in "yml"):
         
         open("./gen_std/"+file_name,'wb').write(r.content)
-        bot.sendMessage(chat_id,"yml data saved")
+        bot.sendMessage(chat_id,"YML data saved\n Upload the excel data.")
             
 
     
@@ -74,17 +79,17 @@ def text_handler(bot,msg,chat_id,TOKEN):
     # method to handle the text inputs in bot
     text = msg['text'];from_name = msg['from']['first_name']
     print(chat_id,from_name,text)
-    if(text.lower() in 'make workorder'):
+    if(text.lower() in '1make workorder'):
         bot.sendMessage(chat_id,"Sure, let's get started")
         yml_questions(bot,msg,chat_id)
         
-    elif(text.lower() in "generate json"):
+    elif(text.lower() in "2generate json"):
         bot.sendMessage(chat_id,"Sure, please upload the std excel format")
         file_download(bot,msg,chat_id,TOKEN)
         
 
-    elif(text.lower() in "helloheygoodmorning"):
-        bot.sendMessage(chat_id,"Hello,this is Spacemonk\nwhat can i do for you?\n1. Generate json\n2. Make work order")
+    elif(text.lower() in "helloheygoodmorningyohi"):
+        bot.sendMessage(chat_id,"Hello,this is Spacemonk bot.\nWhat can I do for you?\n1. Generate json\n2. Make work order")
     else:
         bot.sendMessage(chat_id,"Sorry I don't understand that.")
     
