@@ -8,7 +8,7 @@ sys.path.append('../')
 
 #local imports
 from data_export import export
-import pipe.run as run
+import excel_parser.run as run
 
 
 def yml_questions(bot,msg,chat_id):

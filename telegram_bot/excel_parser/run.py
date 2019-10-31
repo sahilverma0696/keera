@@ -7,8 +7,8 @@ run(excel_file.xlsx,yml_data.yml)
 '''
 
 #local imports
-import pipe.file_handles
-from pipe.df_functions import *
+import excel_parser.file_handles
+from excel_parser.df_functions import *
 
 
 # global imports
@@ -75,9 +75,9 @@ def execute(i,excel_filez,yml_data):
     print(excel_filez.sheet_names[i], " succesfull")
 
 def run(excel,yml):
-    excel_file = pd.ExcelFile(pipe.file_handles.excel_file(excel))
+    excel_file = pd.ExcelFile(excel_parser.file_handles.excel_file(excel))
     number_of_sheets = len(excel_file.sheet_names)
-    yml_data = pipe.file_handles.yml_file(yml)
+    yml_data = excel_parser.file_handles.yml_file(yml)
     for i in range(number_of_sheets):
         execute(i,excel_file,yml_data)
 
