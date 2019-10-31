@@ -6,16 +6,19 @@ run(excel_file.xlsx,yml_data.yml)
 
 '''
 
-
+#local imports
 import file_handles
 from df_functions import *
-#from export import export_json
-#from sys import argv
+
+
+# global imports
+from sys import argv
 
 
 
 
 def base_df(excel_filez,i,yml_data):
+    #method to produce the df from the origin coordinate
     df = pd.read_excel(excel_filez,sheet_name=excel_filez.sheet_names[i],header = None)
 
     
@@ -24,23 +27,25 @@ def base_df(excel_filez,i,yml_data):
     df =df_clean(df)
     df =df.applymap(lambda s:s.lower() if type(s) == str else s)
     #Creating the dataframe from origin
-    #try:
-    origin = coordinates(df,yml_data['origin'])
-    #except:
-    #    print("Origin not found")
-    #    exit(0)
+    try:
+        origin = coordinates(df,yml_data['origin'])
+        df= df.iloc[origin[0]:,origin[1]:]
+    except:
+        print("Origin not found")
+        exit(0)
 
-    df= df.iloc[origin[0]:,origin[1]:]
+    
     reset_index(df)
 
     return df
 
 
 def execute(i,excel_filez,yml_data):
+    # method to create base_df, and to convert the df to excel export 
     df = base_df(excel_filez,i,yml_data)
     
 
-    ## TODO: seprate the normal df construct vs period data construct 
+    
     if(yml_data['periodicity']):
         try:
             freq_c =coordinates(df,yml_data['coordinate term'])
@@ -66,8 +71,7 @@ def execute(i,excel_filez,yml_data):
 
 
     ##### EXPORTING DATA
-    df_act.to_excel(excel_filez.sheet_names[i]+".xlsx")
-    #export_json(df_act,excel_filez.sheet_names[i])
+    df_act.to_excel(excel_filez.sheet_names[i]+"_spstd.xlsx")
     print(excel_filez.sheet_names[i], " succesfull")
 
 def run(excel,yml):
@@ -80,4 +84,4 @@ def run(excel,yml):
 
 
 
-#run(argv[1],argv[2])
+run(argv[1],argv[2])

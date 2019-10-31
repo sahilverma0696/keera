@@ -17,7 +17,6 @@ def df_clean(df):
 
 
 
-
 # method to return the (row,column), of first occurance, else False
 def coordinates(df,term):
     for i in range(len(df.columns)):
@@ -31,8 +30,6 @@ def coordinates(df,term):
 
 
 
-
-
 # setting the index of df back from 0
 def reset_index(df):
     df.reset_index(inplace=True)
@@ -40,13 +37,10 @@ def reset_index(df):
 
 
 
-
-
 #setting the header, by the first row
 def set_column(df):
     df.columns = df.iloc[0]
     df.drop(df.index[0],inplace=True)
-
 
 
 
@@ -63,28 +57,6 @@ def week_list(df):
         
 
 
-
-'''
-def base_df(excel_file,i):
-    df = pd.read_excel(excel_file,sheet_name=excel_file.sheet_names[i],header = None)
-
-    
-    #Producing clean dataframe in lowercase.
-
-    df =df_clean(df)
-    df =df.applymap(lambda s:s.lower() if type(s) == str else s)
-    #Creating the dataframe from origin
-    #try:
-    origin = coordinates(df,yml_data['origin'])
-    #except:
-    #    print("Origin not found")
-    #    exit(0)
-
-    df= df.iloc[origin[0]:,origin[1]:]
-    reset_index(df)
-
-    return df
-'''
 def single(df):
     df_act = df.iloc[0:,0:]
     set_column(df_act)
