@@ -39,6 +39,7 @@ def gen_std(bot,msg,chat_id,file_name):
             f =open(each_file,"rb")
             #file_doc = f.read()
             bot.sendDocument(chat_id,f)
+    os.chdir("..")
 
 
 
