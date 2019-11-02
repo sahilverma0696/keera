@@ -8,7 +8,7 @@ sys.path.append('../')
 
 #local imports
 from data_export import export
-import excel_parser.run as run
+import excel_parser.parser as parser
 
 
 def yml_questions(bot,msg,chat_id):
@@ -30,7 +30,7 @@ def gen_std(bot,msg,chat_id,file_name):
     # method to call excel_parser function
     os.chdir("./gen_std/")
     # change the yml data name handling,hardcoded right now
-    run.run(file_name,"dd.yml")
+    parser.parser(file_name,"dd.yml")
     print("ExcelStd generate")
     bot.sendMessage(chat_id,"Standard Excel Generated")
     all_files = os.listdir()
@@ -39,6 +39,7 @@ def gen_std(bot,msg,chat_id,file_name):
             f =open(each_file,"rb")
             #file_doc = f.read()
             bot.sendDocument(chat_id,f)
+    os.chdir("..")
 
 
 
@@ -79,7 +80,9 @@ def text_handler(bot,msg,chat_id,TOKEN):
     # method to handle the text inputs in bot
     text = msg['text'];from_name = msg['from']['first_name']
     print(chat_id,from_name,text)
-    if(text.lower() in '1make workorder'):
+    if(text.lower() in "helloheygoodmorningyohi"):
+        bot.sendMessage(chat_id,"Hello,this is Spacemonk bot.\nWhat can I do for you?\n1. Generate json\n2. Make work order \n3. Instructions")
+    elif(text.lower() in '1make workorder'):
         bot.sendMessage(chat_id,"Sure, let's get started")
         yml_questions(bot,msg,chat_id)
         
@@ -87,9 +90,7 @@ def text_handler(bot,msg,chat_id,TOKEN):
         bot.sendMessage(chat_id,"Sure, please upload the std excel format")
         file_download(bot,msg,chat_id,TOKEN)
         
-
-    elif(text.lower() in "helloheygoodmorningyohi"):
-        bot.sendMessage(chat_id,"Hello,this is Spacemonk bot.\nWhat can I do for you?\n1. Generate json\n2. Make work order")
+    
     else:
         bot.sendMessage(chat_id,"Sorry I don't understand that.")
     

@@ -75,7 +75,7 @@ def execute(i,excel_filez,yml_data):
     df_act.to_excel(excel_filez.sheet_names[i]+"_spstd.xlsx")
     print(excel_filez.sheet_names[i], " succesfull")
 
-def run(excel,yml):
+def parser(excel,yml):
     excel_file = pd.ExcelFile(excel_parser.file_handles.excel_file(excel))
     number_of_sheets = len(excel_file.sheet_names)
     yml_data = excel_parser.file_handles.yml_file(yml)
