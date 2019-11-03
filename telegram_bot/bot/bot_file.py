@@ -6,7 +6,6 @@ import os
 import sys
 sys.path.append('../')
 from shutil import rmtree
-
 #local imports
 
 from data_export import export
@@ -70,7 +69,6 @@ def gen_std(bot,msg,chat_id,file_name):
     os.chdir("..") # change
     rmtree("./"+msg['from']['username'])
     os.chdir("..")
-
 
 
 

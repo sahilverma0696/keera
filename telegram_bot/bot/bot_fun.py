@@ -1,8 +1,9 @@
 
 
 import bot_file 
+import utils
  
-def text_handler(bot,msg,chat_id,TOKEN): 
+def text_handler(bot,msg,chat_id): 
     # method to handle the text inputs in bot
     text = msg['text'];from_name = msg['from']['first_name']
     print(chat_id,from_name,text)
@@ -14,7 +15,7 @@ def text_handler(bot,msg,chat_id,TOKEN):
         
     elif(text.lower() in "2generate json"):
         bot_file.bot.sendMessage(chat_id,"Sure, please upload the std excel format")
-        bot_file.file_download(bot,msg,chat_id,TOKEN)
+        bot_file.file_download(bot,msg,chat_id)
         
     
     else:
@@ -22,11 +23,12 @@ def text_handler(bot,msg,chat_id,TOKEN):
     
     
 
-def menu(bot,msg,content_type,chat_id,TOKEN):
+def menu(bot,msg,content_type,chat_id):
     # menu for the bot,redirects the navigation based on the type of data
     if(content_type=='text'):
-        text_handler(bot,msg,chat_id,TOKEN)
+        text_handler(bot,msg,chat_id)
     elif(content_type== 'document'):
+        TOKEN = utils.read_token("credentials.ini")
         bot_file.file_download(bot,msg,chat_id,TOKEN)
     else:
         bot.sendMessage(chat_id,"Sorry I don't understand that")
