@@ -28,7 +28,7 @@ def gen_json(bot,msg,chat_id,file_name):
 
 def gen_std(bot,msg,chat_id,file_name):
     # method to call excel_parser function
-    os.chdir("./gen_std/")
+    os.chdir("./gen_std/"+msg['from']['username']+"/")
     # change the yml data name handling,hardcoded right now
     parser.parser(file_name,"dd.yml")
     print("ExcelStd generate")
@@ -39,6 +39,7 @@ def gen_std(bot,msg,chat_id,file_name):
             f =open(each_file,"rb")
             #file_doc = f.read()
             bot.sendDocument(chat_id,f)
+    os.chdir("..") # change
     os.chdir("..")
 
 
@@ -51,7 +52,7 @@ def file_download(bot,msg,chat_id,TOKEN):
 
     file_id = msg['document']['file_id']
     file_name = msg['document']['file_name']
-    pprint(msg) 
+    print(msg['from']['username']) 
     print(file_name) 
 
     file_name_first =file_name.split(".")[0]
@@ -66,12 +67,19 @@ def file_download(bot,msg,chat_id,TOKEN):
             gen_json(bot,msg,chat_id,file_name)
             print("Json file generated")
         else:
-            open("./gen_std/"+file_name,'wb').write(r.content)
+            try:
+                os.mkdir("./gen_std/"+msg['from']['username']+"/")
+            except:
+                pass
+            open("./gen_std/"+msg['from']['username']+"/"+file_name,'wb').write(r.content)
             gen_std(bot,msg,chat_id,file_name)
             print("Standard Excel generated")
     elif(file_name_ext in "yml"):
-        
-        open("./gen_std/"+file_name,'wb').write(r.content)
+        try:
+            os.mkdir("./gen_std/"+msg['from']['username']+"/")
+        except:
+            pass
+        open("./gen_std/"+msg['from']['username']+"/"+file_name,'wb').write(r.content)
         bot.sendMessage(chat_id,"YML data saved\n Upload the excel data.")
             
 
