@@ -64,6 +64,7 @@ def gen_std(bot,msg,chat_id,file_name):
                 f =open(each_file,"rb")
             #file_doc = f.read()
                 bot.sendDocument(chat_id,f)
+                f.close()
     else:
         bot.sendMessage(chat_id,"Please upload the files again")
     os.chdir("..") # change
