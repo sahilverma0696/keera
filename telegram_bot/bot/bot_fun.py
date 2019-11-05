@@ -3,11 +3,11 @@
 import bot_file 
 import utils
 import os
- 
+from pprint import pprint 
 def text_handler(bot,msg,chat_id): 
     # method to handle the text inputs in bot
     text = msg['text'];from_name = msg['from']['first_name']
-    print(chat_id,from_name,text)
+    #print(chat_id,from_name,text)
     if(text.lower() in "helloheygoodmorningyohi"):
         bot.sendMessage(chat_id,"Hello,this is Spacemonk bot.\nWhat can I do for you?\n1. Generate json\n2. Make work order \n3. Instructions")
     elif(text.lower() in '1make workorder'):
@@ -46,6 +46,11 @@ def menu(bot,msg,content_type,chat_id):
             os.chdir("..")
         else:
             bot.sendMessage(chat_id,"Image not Downloaded!!")
+    elif(content_type=="location"):
+        latitude,longitude =msg["location"]['latitude'],msg["location"]['longitude']
+        bot.sendLocation(chat_id,latitude,longitude)
     else:
         bot.sendMessage(chat_id,"Sorry I don't understand that")
+        
+
 

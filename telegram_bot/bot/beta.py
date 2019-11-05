@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #TODO: Add log for the bot 
 
 import telepot 

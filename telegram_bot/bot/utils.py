@@ -28,3 +28,4 @@ def bot_send_image(bot,chat_id,image):
     bot.sendPhoto(chat_id,image_file)
     image_file.close()
     return 0
+
