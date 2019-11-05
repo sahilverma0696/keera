@@ -2,6 +2,7 @@
 
 import bot_file 
 import utils
+import os
  
 def text_handler(bot,msg,chat_id): 
     # method to handle the text inputs in bot
@@ -21,15 +22,30 @@ def text_handler(bot,msg,chat_id):
     else:
         bot.sendMessage(chat_id,"Sorry I don't understand that.")
     
-    
+TOKEN = utils.read_token("credentials.ini") 
 
 def menu(bot,msg,content_type,chat_id):
     # menu for the bot,redirects the navigation based on the type of data
+    
     if(content_type=='text'):
         text_handler(bot,msg,chat_id)
     elif(content_type== 'document'):
-        TOKEN = utils.read_token("credentials.ini")
+        
         bot_file.file_download(bot,msg,chat_id,TOKEN)
+    elif(content_type=='photo'):
+        bot.sendMessage(chat_id,"Image Detected\nDownloading Image")
+        os.chdir("./photos")
+        image_status =utils.bot_download_image(bot,msg,TOKEN,content_type)
+
+        if(image_status==0):
+            bot.sendMessage(chat_id,"Image Downloaded!!")
+            image = msg["photo"][0]["file_id"]+".jpeg"
+            send_status =utils.bot_send_image(bot,chat_id,image)
+            if(send_status==0):
+                bot.sendMessage(chat_id,"Image Sent")
+            os.chdir("..")
+        else:
+            bot.sendMessage(chat_id,"Image not Downloaded!!")
     else:
         bot.sendMessage(chat_id,"Sorry I don't understand that")
 
