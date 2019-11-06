@@ -17,7 +17,10 @@ def text_handler(bot,msg,chat_id):
     elif(text.lower() in "2generate json"):
         bot_file.bot.sendMessage(chat_id,"Sure, please upload the std excel format")
         bot_file.file_download(bot,msg,chat_id)
-        
+    elif(text.lower()[0:5] in "locate"):
+        location = utils.locate(msg)
+        bot.sendMessage(chat_id,location)
+
     
     else:
         bot.sendMessage(chat_id,"Sorry I don't understand that.")

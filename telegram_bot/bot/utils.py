@@ -1,5 +1,6 @@
 from configparser import ConfigParser
 import requests
+from textblob import TextBlob
 def read_token(file_name):
     config = ConfigParser()
     config.read(file_name)
@@ -28,4 +29,22 @@ def bot_send_image(bot,chat_id,image):
     bot.sendPhoto(chat_id,image_file)
     image_file.close()
     return 0
+
+def locate(msg):
+    text = msg["text"]
+    blob = TextBlob(text)
+    noun = blob.noun_phrases[0]
+    return geocode(noun)
+
+
+def geocode(address):
+    # correction in this to be made
+    url = 'https://maps.googleapis.com/maps/api/geocode/json'
+    params = {'sensor': 'false', 'address': address}
+    r = requests.get(url, params=params)
+    results = r.json()['results']
+    print(results)
+    location = results[0]['geometry']['location']
+    return(location['lat'], location['lng'])
+
 
