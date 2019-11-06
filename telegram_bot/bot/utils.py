@@ -1,6 +1,7 @@
 from configparser import ConfigParser
 import requests
 from textblob import TextBlob
+import os
 def read_token(file_name):
     config = ConfigParser()
     config.read(file_name)
@@ -47,4 +48,8 @@ def geocode(address):
     location = results[0]['geometry']['location']
     return(location['lat'], location['lng'])
 
+
+def ask_location()
+def save_location(msg,chat_id):
+    
 
