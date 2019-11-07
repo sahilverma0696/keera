@@ -1,7 +1,8 @@
 from configparser import ConfigParser
 import requests
-from textblob import TextBlob
+#from textblob import TextBlob
 import os
+from geopy.geocoders import Nominatim
 def read_token(file_name):
     config = ConfigParser()
     config.read(file_name)
@@ -32,24 +33,23 @@ def bot_send_image(bot,chat_id,image):
     return 0
 
 def locate(msg):
-    text = msg["text"]
-    blob = TextBlob(text)
-    noun = blob.noun_phrases[0]
-    return geocode(noun)
+    text = msg["text"][6:]
+    #blob = TextBlob(text)
+    #noun = blob.noun_phrases[0]
+    return geocode(text)
+
 
 
 def geocode(address):
-    # correction in this to be made
-    url = 'https://maps.googleapis.com/maps/api/geocode/json'
-    params = {'sensor': 'false', 'address': address}
-    r = requests.get(url, params=params)
-    results = r.json()['results']
-    print(results)
-    location = results[0]['geometry']['location']
-    return(location['lat'], location['lng'])
+    geolocator = Nominatim(user_agent ="sahil",timeout =5)
+    print(address)
+    location= geolocator.geocode(address)
+    if(location is not None):
+        return (location.latitude, location.longitude)
+    else:
+        return False
+#def ask_location()
+#def save_location(msg,chat_id):
 
-
-def ask_location()
-def save_location(msg,chat_id):
     
 
