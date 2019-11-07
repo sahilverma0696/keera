@@ -9,7 +9,8 @@ def text_handler(bot,msg,chat_id):
     text = msg['text'];from_name = msg['from']['first_name']
     #print(chat_id,from_name,text)
     if(text.lower() in "helloheygoodmorningyohi"):
-        bot.sendMessage(chat_id,"Hello,this is Spacemonk bot.\nWhat can I do for you?\n1. Generate json\n2. Make work order \n3. Instructions")
+        bot.sendMessage(chat_id,"Hello,it's Spacemonk.Here's all I can do for you")
+        bot.sendMessage(chat_id,"1.Generate Workorder(JSON)\n2.Convert to standard format.\n3.Image sending.\n4.Finding Site(location) \n5. Finding peers")
     elif(text.lower() in '1make workorder'):
         bot.sendMessage(chat_id,"Sure, let's get started")
         bot_file.yml_questions(bot,msg,chat_id)
@@ -17,7 +18,13 @@ def text_handler(bot,msg,chat_id):
     elif(text.lower() in "2generate json"):
         bot_file.bot.sendMessage(chat_id,"Sure, please upload the std excel format")
         bot_file.file_download(bot,msg,chat_id)
-        
+    elif(text.lower()[0:5] in "locate"):
+        location = utils.locate(msg)
+        if(location is not None):
+            bot.sendLocation(chat_id,location[0],location[1])
+        else:
+            bot.sendMessage(chat_id,"not found")
+
     
     else:
         bot.sendMessage(chat_id,"Sorry I don't understand that.")

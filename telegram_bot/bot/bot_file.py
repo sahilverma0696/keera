@@ -67,7 +67,7 @@ def gen_std(bot,msg,chat_id,file_name):
                 f.close()
     else:
         bot.sendMessage(chat_id,"Please upload the files again")
-    os.chdir("..") # change
+    os.chdir("..") 
     rmtree("./"+msg['from']['username'])
     os.chdir("..")
 

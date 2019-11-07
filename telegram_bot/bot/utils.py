@@ -1,5 +1,8 @@
 from configparser import ConfigParser
 import requests
+#from textblob import TextBlob
+import os
+from geopy.geocoders import Nominatim
 def read_token(file_name):
     config = ConfigParser()
     config.read(file_name)
@@ -28,4 +31,25 @@ def bot_send_image(bot,chat_id,image):
     bot.sendPhoto(chat_id,image_file)
     image_file.close()
     return 0
+
+def locate(msg):
+    text = msg["text"][6:]
+    #blob = TextBlob(text)
+    #noun = blob.noun_phrases[0]
+    return geocode(text)
+
+
+
+def geocode(address):
+    geolocator = Nominatim(user_agent ="sahil",timeout =5)
+    print(address)
+    location= geolocator.geocode(address)
+    if(location is not None):
+        return (location.latitude, location.longitude)
+    else:
+        return False
+#def ask_location()
+#def save_location(msg,chat_id):
+
+    
 
