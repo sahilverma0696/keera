@@ -1,18 +1,18 @@
 # global imports
-#import telegram
 import requests
 from pprint import pprint 
 import os
 import sys
 sys.path.append('../')
 from shutil import rmtree
-#local imports
+
 
 from data_export import export
 import excel_parser.parser as parser
+
+
 def yml_questions(bot,msg,chat_id):
     bot.sendMessage(chat_id,"Please upload the yml data")
-
 
 
 def gen_json(bot,msg,chat_id,file_name):
@@ -43,7 +43,6 @@ def file_check(extension):
             return each_file
     else:
         return False
-
 
 
 def gen_std(bot,msg,chat_id,file_name):
