@@ -1,0 +1,1 @@
+{'message_id': 936, 'from': {'id': 795799315, 'is_bot': False, 'first_name': 'Sahil Verma', 'username': 'sahilverma', 'language_code': 'en'}, 'chat': {'id': 795799315, 'first_name': 'Sahil', 'username': 'sahilverma0696', 'type': 'private'}, 'date': 1573110409, 'location': {'latitude': 12.898958, 'longitude': 77.631079}}
