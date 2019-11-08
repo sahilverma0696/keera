@@ -19,8 +19,8 @@ def handle(msg):
 
     content_type, chat_type, chat_id = telepot.glance(msg)
     #print(content_type)
-    pprint(msg)
-    print(chat_id)
+    #pprint(msg)
+    #print(chat_id)
     #key,value = msg.items()
     #print(msg_key[3])
     bot_fun.menu(bot,msg,content_type,chat_id)

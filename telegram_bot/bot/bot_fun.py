@@ -36,6 +36,14 @@ def text_handler(bot,msg,chat_id):
             bot.sendMessage(chat_id,"Location not found")
         else:
             bot.sendLocation(chat_id,location[0],location[1])
+    elif(text.lower()[0:3] in "peer"):
+        name = msg["text"][5:]
+        location =bot_loc.send_location(name)
+        if(location == False):
+            bot.sendMessage(chat_id,"User Not found")
+        else:
+            latitude,longitude = location
+            bot.sendLocation(chat_id,latitude,longitude)
 
 
     else:
@@ -75,11 +83,12 @@ def menu(bot,msg,content_type,chat_id):
     elif(content_type=="location"):
         # location types input
         latitude,longitude =msg["location"]['latitude'],msg["location"]['longitude']
-        bot.sendLocation(chat_id,latitude,longitude)
-        #bot_loc.save_location(msg,chat_id)
+        #bot.sendLocation(chat_id,latitude,longitude)
+        bot_loc.save_location(msg,chat_id)
+        #bot.sendMessage(chat_id,"Location Updated")
     else:
         # other type input 
-        bot.sendMessage(chat_id,"Sorry I don't understand that")
+        bot.sendMessage(chat_id,"Sorry I don't understand the Data")
         
 
 

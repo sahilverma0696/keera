@@ -44,7 +44,7 @@ def file_check(extension):
     else:
         return False
 
-
+# ISSUE: File crash, directory handle if xl file sent first
 def gen_std(bot,msg,chat_id,file_name):
     # method to call excel_parser function
     os.chdir("./gen_std/"+msg['from']['username']+"/")
