@@ -50,22 +50,24 @@ def gen_std(bot,msg,chat_id,file_name):
     os.chdir("./gen_std/"+msg['from']['username']+"/")
     print(os.listdir())
     # change the yml data name handling,hardcoded right now
-    if(std_file_check()!=False):
-        excel_file,yml_file = std_file_check()
-        
-        print(excel_file,yml_file)
-        parser.parser(excel_file,yml_file)
-        print("ExcelStd generate")
-        bot.sendMessage(chat_id,"Standard Excel Generated")
-        all_files = os.listdir()
-        for each_file in all_files:
-            if(each_file[-11:]=="_spstd.xlsx"):
-                f =open(each_file,"rb")
-            #file_doc = f.read()
-                bot.sendDocument(chat_id,f)
-                f.close()
-    else:
-        bot.sendMessage(chat_id,"Please upload the files again")
+    try:
+        if(std_file_check()!=False):
+            excel_file,yml_file = std_file_check()
+            
+            print(excel_file,yml_file)
+            parser.parser(excel_file,yml_file)
+            print("ExcelStd generate")
+            bot.sendMessage(chat_id,"Standard Excel Generated")
+            all_files = os.listdir()
+            for each_file in all_files:
+                if(each_file[-11:]=="_spstd.xlsx"):
+                    f =open(each_file,"rb")
+                #file_doc = f.read()
+                    bot.sendDocument(chat_id,f)
+                    f.close()
+    except:
+
+        bot.sendMessage(chat_id,"Please upload the yml files again")
     os.chdir("..") 
     rmtree("./"+msg['from']['username'])
     os.chdir("..")
