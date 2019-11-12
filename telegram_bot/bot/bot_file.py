@@ -48,7 +48,7 @@ def file_check(extension):
 def gen_std(bot,msg,chat_id,file_name):
     # method to call excel_parser function
     os.chdir("./gen_std/"+msg['from']['username']+"/")
-    print(os.listdir())
+    #print(os.listdir())
     # change the yml data name handling,hardcoded right now
     try:
         if(std_file_check()!=False):
@@ -110,7 +110,7 @@ def file_download(bot,msg,chat_id,TOKEN):
             os.mkdir("./gen_std/"+msg['from']['username']+"/")
         except:
             pass
-        print(os.getcwd())
+        #print(os.getcwd())
         open("./gen_std/"+msg['from']['username']+"/"+file_name,'wb').write(r.content)
         bot.sendMessage(chat_id,"YML data saved\n Upload the excel data.")
             

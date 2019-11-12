@@ -5,7 +5,7 @@ import telepot
 from telepot.loop import MessageLoop
 from time import sleep
 import utils
-import bot_fun
+import menu
 from pprint import pprint 
 
 
@@ -23,7 +23,7 @@ def handle(msg):
     #print(chat_id)
     #key,value = msg.items()
     #print(msg_key[3])
-    bot_fun.menu(bot,msg,content_type,chat_id)
+    menu.menu(bot,msg,content_type,chat_id)
     
     
 
