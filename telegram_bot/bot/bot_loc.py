@@ -56,6 +56,6 @@ def send_location(name):
         return False
     else:
         user =user[0]
-        return (location_data.at[user,"latitude"],location_data.at[user,"longitude"])
+        return (location_data.at[user,"date"],location_data.at[user,"latitude"],location_data.at[user,"longitude"])
 
 
