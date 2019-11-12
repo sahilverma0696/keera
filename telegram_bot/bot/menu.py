@@ -5,6 +5,7 @@ import utils
 import os
 from pprint import pprint 
 import bot_loc
+from datetime import datetime
 
     
 TOKEN = utils.read_token("credentials.ini") 
@@ -42,8 +43,12 @@ def text_handler(bot,msg,chat_id):
         if(location == False):
             bot.sendMessage(chat_id,"User Not found")
         else:
-            latitude,longitude = location
+            date,latitude,longitude = location
             bot.sendLocation(chat_id,latitude,longitude)
+            date= str(datetime.fromtimestamp(date))
+            time = date[12:]
+            date =date[0:10]
+            bot.sendMessage(chat_id,"Last Update at Date: "+date+" Time :"+time)
 
 
     else:
