@@ -1,7 +1,0 @@
-1.	Spelling mistakes 
-2.	Missing necessary columns, 
-3.	Missing ticks in the frequency, month column
-4.	Category problems, not listed as columns
-5.	Empty activity name sheet2,row -37,38
-6.	error in DG STACK Monitoring
-Inconsistency in the sheets, one is not having the same format as the other. Can be handled by strucutre provided.
