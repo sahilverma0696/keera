@@ -1,17 +1,58 @@
-# spacemonk
+# keera
+Keera is a general chatbot made fr regular day to day activites.
 
-### Execution instructions:
-Enter the necessary paths and variables in the data.yml file provided.
-excel_parser -> excel_files -> Spacemonk -> input
+![keera](https://user-images.githubusercontent.com/25270515/70167629-290d0200-16ed-11ea-88a3-2f414bde3717.gif)
 
-### Notebook
-excel_parser -> generic ->
-summit.ipynb
-summit.py
 
-### Script
-excel_parser -> scripts
 
-First execute base_dir.py to setup the path on user Desktop.
-Second execute main.py after putting the necessary data in input file created.
+## structure
+```
+keera
+    \bot
+        -handle.py
+        -menu.py
+        -utils.py
+        -credentials.ini
+        \data
+            -location.csv
+            \photos
+```
 
+
+
+## flow
+
+```
+
+handle.py ----menu.py 
+
+
+                          ------ text       ------ mirror text
+
+                                          ------ peer last location
+
+                                          ------ locate place in maps
+
+
+                        ------ location   
+                                          ------ Update location in location.csv
+
+
+                        ------ photos     ------ mirror back the image, with low quality :p
+
+```
+## usage
+1. Install the requirements by :
+```
+pip3 install -r requirement.txt
+```
+2. Goto ``` https://telegram.me/botfather ``` and get your chatbot token.
+
+3. Goto dir ```bot``` and execute the following command.<br>
+``` python3 handle.py ```
+
+
+## contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
